@@ -3,8 +3,6 @@ import { Users, Target, Heart, Lightbulb, ChevronDown, X, Star } from "lucide-re
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
-import impactIct from "@/assets/impact-ict.jpg";
-import impactEntrepreneurship from "@/assets/impact-entrepreneurship.jpg";
 import team1 from "@/assets/team-1.jpg";
 import team2 from "@/assets/team-2.jpg";
 import team3 from "@/assets/team-3.jpg";

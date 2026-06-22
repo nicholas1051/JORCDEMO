@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { Monitor, Wifi, Zap, Shield, Users, Headphones, BookOpen, Search, Clock, Heart, Mic, Film, Building2, Mail, Phone, Calendar, CheckCircle2, ChevronRight, ChevronLeft, Plus, Minus, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";

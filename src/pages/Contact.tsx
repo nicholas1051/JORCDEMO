@@ -17,7 +17,7 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [faqSearch, setFaqSearch] = useState("");
-  const [faqFeedback, setFaqFeedback] = useState<Record<number, "helpful" | "not-helpful">>({});
+  const [faqFeedback, setFaqFeedback] = useState<Record<number, "helpful" | "not-helpful" | undefined>>({});
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [showBackToTop, setShowBackToTop] = useState(false);
