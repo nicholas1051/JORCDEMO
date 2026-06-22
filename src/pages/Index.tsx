@@ -177,6 +177,34 @@ function StatsMarquee() {
 function GalleryRow({ items, isVideo }: { items: typeof GALLERY_IMAGES; isVideo?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const grid = ref.current;
+    if (!grid) return;
+    let paused = false;
+    const rafIds: number[] = [];
+
+    const step = () => {
+      if (paused) return;
+      grid.scrollLeft += 0.5;
+      const half = grid.scrollWidth / 2;
+      if (grid.scrollLeft >= half) grid.scrollLeft = 0;
+      else if (grid.scrollLeft <= 0) grid.scrollLeft = half;
+      rafIds.push(requestAnimationFrame(step));
+    };
+    rafIds.push(requestAnimationFrame(step));
+
+    const onEnter = () => { paused = true; };
+    const onLeave = () => { paused = false; step(); };
+    grid.addEventListener("mouseenter", onEnter);
+    grid.addEventListener("mouseleave", onLeave);
+
+    return () => {
+      rafIds.forEach((id) => cancelAnimationFrame(id));
+      grid.removeEventListener("mouseenter", onEnter);
+      grid.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
+
   const scroll = (dir: number) => {
     if (!ref.current) return;
     const card = ref.current.querySelector<HTMLDivElement>("[data-gallery-card]");
@@ -301,9 +329,6 @@ function ProgramCard({ p }: { p: typeof HOME_PROGRAMS[0] }) {
    ═══════════════════════════════════════ */
 
 const Index = () => {
-  const imgRef = useRef<HTMLDivElement>(null);
-  const vidRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -316,31 +341,8 @@ const Index = () => {
       { threshold: 0.1 }
     );
     document.querySelectorAll('[class*="reveal"]').forEach((el) => observer.observe(el));
-    const grids = [imgRef.current, vidRef.current];
-    const rafIds: number[] = [];
-
-    grids.forEach((grid) => {
-      if (!grid) return;
-      let paused = false;
-
-      const step = () => {
-        if (paused) return;
-        grid!.scrollLeft += 0.5;
-        const half = grid!.scrollWidth / 2;
-        if (grid!.scrollLeft >= half) grid!.scrollLeft = 0;
-        else if (grid!.scrollLeft <= 0) grid!.scrollLeft = half;
-        rafIds.push(requestAnimationFrame(step));
-      };
-      rafIds.push(requestAnimationFrame(step));
-
-      const onEnter = () => { paused = true; };
-      const onLeave = () => { paused = false; step(); };
-      grid.addEventListener("mouseenter", onEnter);
-      grid.addEventListener("mouseleave", onLeave);
-    });
 
     return () => {
-      rafIds.forEach((id) => cancelAnimationFrame(id));
       observer.disconnect();
     };
   }, []);
