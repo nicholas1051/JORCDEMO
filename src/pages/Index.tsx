@@ -177,34 +177,6 @@ function StatsMarquee() {
 function GalleryRow({ items, isVideo }: { items: typeof GALLERY_IMAGES; isVideo?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const grid = ref.current;
-    if (!grid) return;
-    let paused = false;
-    const rafIds: number[] = [];
-
-    const step = () => {
-      if (paused) return;
-      grid.scrollLeft += 0.5;
-      const half = grid.scrollWidth / 2;
-      if (grid.scrollLeft >= half) grid.scrollLeft = 0;
-      else if (grid.scrollLeft <= 0) grid.scrollLeft = half;
-      rafIds.push(requestAnimationFrame(step));
-    };
-    rafIds.push(requestAnimationFrame(step));
-
-    const onEnter = () => { paused = true; };
-    const onLeave = () => { paused = false; step(); };
-    grid.addEventListener("mouseenter", onEnter);
-    grid.addEventListener("mouseleave", onLeave);
-
-    return () => {
-      rafIds.forEach((id) => cancelAnimationFrame(id));
-      grid.removeEventListener("mouseenter", onEnter);
-      grid.removeEventListener("mouseleave", onLeave);
-    };
-  }, []);
-
   const scroll = (dir: number) => {
     if (!ref.current) return;
     const card = ref.current.querySelector<HTMLDivElement>("[data-gallery-card]");
@@ -224,10 +196,10 @@ function GalleryRow({ items, isVideo }: { items: typeof GALLERY_IMAGES; isVideo?
       </button>
       <div
         ref={ref}
-        className="flex gap-6 overflow-x-auto py-2 px-1"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        className="flex gap-6 py-2 overflow-hidden"
       >
-        {[...items, ...items].map((item, i) => (
+        <div className="flex gap-6 animate-marquee w-max">
+          {[...items, ...items].map((item, i) => (
           <div
             key={i}
             data-gallery-card
@@ -272,6 +244,7 @@ function GalleryRow({ items, isVideo }: { items: typeof GALLERY_IMAGES; isVideo?
             </div>
           </div>
         ))}
+        </div>
       </div>
       <button
         onClick={() => scroll(1)}
