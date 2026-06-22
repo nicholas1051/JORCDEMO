@@ -199,7 +199,7 @@ function GalleryRow({ items, isVideo }: { items: typeof GALLERY_IMAGES; isVideo?
         className="flex gap-6 overflow-x-auto py-2 px-1"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {items.map((item, i) => (
+        {[...items, ...items].map((item, i) => (
           <div
             key={i}
             data-gallery-card
