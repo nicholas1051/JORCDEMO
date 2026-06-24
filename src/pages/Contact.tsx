@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -147,8 +148,14 @@ const Contact = () => {
     e.preventDefault();
     if (!validateBooking()) return;
     setBookingSubmitting(true);
-    await new Promise(r => setTimeout(r, 1500));
+    const { error } = await supabase.from("facility_bookings").insert({
+      org_name: booking.orgName, contact_person: booking.contact, email: booking.email,
+      phone: booking.phone, purpose: booking.purpose, participants: booking.participants,
+      date: booking.date, time_slot: booking.timeSlot === "other" ? booking.customTime : booking.timeSlot,
+      additional_info: booking.info, source: "contact",
+    });
     setBookingSubmitting(false);
+    if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); return; }
     setBookingSubmitted(true);
     toast({ title: "Booking submitted!", description: "We'll contact you within 24 hours to confirm." });
   };
@@ -157,8 +164,12 @@ const Contact = () => {
     e.preventDefault();
     if (!validate()) return;
     setSubmitting(true);
-    await new Promise(r => setTimeout(r, 1500));
+    const { error } = await supabase.from("contact_messages").insert({
+      first_name: formData.firstName, last_name: formData.lastName, email: formData.email,
+      phone: formData.phone || null, subject: formData.subject, message: formData.message,
+    });
     setSubmitting(false);
+    if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); return; }
     setSubmitted(true);
     toast({ title: "Message sent!", description: "We'll get back to you within 24 hours." });
     const confettiColors = ["#22c55e", "#f59e0b", "#3b82f6", "#ef4444", "#a855f7", "#ec4899"];
@@ -866,7 +877,6 @@ const Contact = () => {
             <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
               <MessageSquare className="h-6 w-6 inline mr-2 -mt-1" />
               Frequently Asked Questions
-              <span className="absolute -bottom-2 left-0 right-0 h-1 bg-jorc-green rounded-full" />
             </h2>
             <p className="text-muted-foreground mt-4">Quick answers to common questions about our center and services.</p>
           </div>
@@ -890,7 +900,7 @@ const Contact = () => {
                 <div className="text-center py-12 text-muted-foreground">
                   <MessageSquare className="h-10 w-10 mx-auto mb-3 opacity-40" />
                   <p>No FAQs match your search.</p>
-                  <button onClick={() => setFaqSearch("")} className="text-jorc-green hover:underline text-sm mt-2">Clear search</button>
+                  <button onClick={() => setFaqSearch("")} className="text-jorc-green hover:text-jorc-green-light text-sm mt-2">Clear search</button>
                 </div>
               ) : (
                 filtered.map((faq, fi) => {

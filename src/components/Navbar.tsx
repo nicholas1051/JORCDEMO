@@ -43,13 +43,13 @@ const Navbar = () => {
 
             <Link
               to="/stakeholder/report"
-              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors leading-tight text-center ${
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                 pathname === "/stakeholder/report"
                   ? "text-jorc-green bg-jorc-green-lighter"
                   : "text-foreground hover:text-jorc-green hover:bg-jorc-green-lighter"
               }`}
             >
-              Stakeholder<br />Report
+              Stakeholder Report
             </Link>
 
             <Link
@@ -84,11 +84,11 @@ const Navbar = () => {
           <Link
             to="/stakeholder/report"
             onClick={() => setOpen(false)}
-            className={`block px-3 py-2 rounded-md text-sm font-medium leading-tight ${
+            className={`block px-3 py-2 rounded-md text-sm font-medium ${
               pathname === "/stakeholder/report" ? "text-jorc-green bg-jorc-green-lighter" : "text-foreground hover:bg-jorc-green-lighter"
             }`}
           >
-            Stakeholder<br />Report
+            Stakeholder Report
           </Link>
           <Link
             to="/donate"

@@ -218,41 +218,42 @@ const About = () => {
 
         {/* Founder's Vision */}
         <section className="mb-16">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="reveal-left">
+          <div className="reveal">
+            <div className="text-center mb-8">
               <div className="inline-block">
                 <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
                   Founder's Vision
-                  <span className="absolute -bottom-2 left-0 right-0 h-1 bg-jorc-green rounded-full" />
                 </h2>
               </div>
-              <p className="text-lg text-muted-foreground mb-6 text-justify mt-8">
-
-
-                Founded in honor of Jonah Ogunniyi Otunla OFR (June 12, 1955 – June 16, 2024), 
-                a visionary leader and advocate of educational advancement, JORC embodies his 
-                unwavering commitment to empowering communities through education and innovation.
-              </p>
-              <p className="text-muted-foreground mb-6 text-justify">
-                Our founder believed that education is the most powerful tool for transformation. 
-                His vision was to create a center where individuals, especially the youth, could 
-                access quality learning resources and develop the skills needed to thrive in the 
-                digital age.
-              </p>
-              <div className="relative pl-6 border-l-4 border-jorc-green">
-                <Star className="absolute -left-3 top-0 h-5 w-5 text-jorc-green bg-white" />
-                <blockquote className="italic text-jorc-green pl-2">
-                  "Legacy in motion, impacting the future" — this is not just our tagline, 
-                  but our commitment to continuing the transformative work that defines our purpose.
-                </blockquote>
-              </div>
             </div>
-            <div className="reveal-right overflow-hidden rounded-lg shadow-strong group">
-              <img
-                src="https://i.postimg.cc/3Nj6sfmx/Whats-App-Image-2026-03-02-at-4-39-21-PM.jpg"
-                alt="JORC Facility"
-                className="w-full transition-transform duration-700 group-hover:scale-105"
-              />
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <p className="text-lg text-muted-foreground mb-6 text-justify">
+                  Founded in honor of Jonah Ogunniyi Otunla OFR (June 12, 1955 – June 16, 2024), 
+                  a visionary leader and advocate of educational advancement, JORC embodies his 
+                  unwavering commitment to empowering communities through education and innovation.
+                </p>
+                <p className="text-muted-foreground mb-6 text-justify">
+                  Our founder believed that education is the most powerful tool for transformation. 
+                  His vision was to create a center where individuals, especially the youth, could 
+                  access quality learning resources and develop the skills needed to thrive in the 
+                  digital age.
+                </p>
+              <div className="relative pl-6 border-l-4 border-jorc-green">
+                <blockquote className="italic text-jorc-green pl-2">
+                    "Legacy in motion, impacting the future" — this is not just our tagline, 
+                    but our commitment to continuing the transformative work that defines our purpose.
+                  </blockquote>
+                </div>
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-lg group cursor-pointer transition-all duration-500 hover:shadow-2xl hover:shadow-jorc-green/20 relative">
+                <img
+                  src="https://i.postimg.cc/3Nj6sfmx/Whats-App-Image-2026-03-02-at-4-39-21-PM.jpg"
+                  alt="Founder's Vision"
+                  className="w-full h-72 object-cover transition-all duration-700 group-hover:scale-105 group-hover:sepia-0 group-hover:saturate-100 saturate-[0.85] sepia-[0.15]"
+                />
+                <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-jorc-green transition-all duration-500 pointer-events-none" />
+              </div>
             </div>
           </div>
         </section>
@@ -267,22 +268,10 @@ const About = () => {
               <div className="inline-block">
                 <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
                   Our Story
-                  <span className="absolute -bottom-2 left-1/4 right-1/4 h-1 bg-jorc-green rounded-full" />
-                </h2>
+                                  </h2>
               </div>
             </div>
             <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="grid grid-cols-2 gap-3">
-                {ourStoryImages.map((img, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setLightboxImg(img)}
-                    className="rounded-xl overflow-hidden border-2 border-white/60 hover:border-jorc-green transition-all duration-300 hover:scale-[1.03] hover:shadow-lg focus:outline-none shadow-soft"
-                  >
-                    <img src={img} alt="" className="w-full h-40 object-cover" />
-                  </button>
-                ))}
-              </div>
               <div>
                 <p className="text-lg text-muted-foreground mb-6 text-justify">
                   Established as an initiative of the Francisca and Jonah Otunla Foundation, 
@@ -299,6 +288,17 @@ const About = () => {
                   affordable, and high-quality training programs that prepare individuals 
                   for success in the 21st century economy.
                 </p>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {ourStoryImages.map((img, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setLightboxImg(img)}
+                    className="rounded-xl overflow-hidden border-2 border-white/60 hover:border-jorc-green transition-all duration-300 hover:scale-[1.03] hover:shadow-lg focus:outline-none shadow-soft"
+                  >
+                    <img src={img} alt="" className="w-full h-40 object-cover" />
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -352,8 +352,7 @@ const About = () => {
             <div className="inline-block">
               <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
                 Our Core Values
-                <span className="absolute -bottom-2 left-1/4 right-1/4 h-1 bg-jorc-green rounded-full" />
-              </h2>
+                </h2>
             </div>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -384,8 +383,7 @@ const About = () => {
             <div className="inline-block">
               <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
                 Our Impact Areas
-                <span className="absolute -bottom-2 left-1/4 right-1/4 h-1 bg-jorc-green rounded-full" />
-              </h2>
+                </h2>
             </div>
           </div>
           <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto mb-12 reveal">
@@ -416,8 +414,7 @@ const About = () => {
             <div className="inline-block">
               <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
                 Our Team
-                <span className="absolute -bottom-2 left-1/4 right-1/4 h-1 bg-jorc-green rounded-full" />
-              </h2>
+                </h2>
             </div>
           </div>
           <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto mb-12 reveal">

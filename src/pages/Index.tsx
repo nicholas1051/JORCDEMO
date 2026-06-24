@@ -35,7 +35,7 @@ const HOME_PROGRAMS = [
     img: "https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&h=400&fit=crop",
   },
   {
-    icon: "⚡",
+    icon: "💻",
     title: "C.B.T Training",
     desc: "Specialized computer-based test training to prepare candidates for WAEC, JAMB, and other CBT examinations.",
     img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop",

@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Facility = () => {
   const { toast } = useToast();
@@ -77,8 +78,13 @@ const Facility = () => {
     e.preventDefault();
     if (!validateStep(2)) return;
     setSubmitting(true);
-    await new Promise(r => setTimeout(r, 1500));
+    const { error } = await supabase.from("facility_bookings").insert({
+      org_name: formData.orgName, contact_person: formData.contact, email: formData.email,
+      phone: formData.phone, purpose: formData.purpose, participants: formData.participants,
+      date: formData.date, time_slot: formData.timeSlot, additional_info: formData.info, source: "facility",
+    });
     setSubmitting(false);
+    if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); return; }
     setSubmitted(true);
     toast({ title: "Booking submitted!", description: "We'll contact you within 24 hours to confirm." });
   };
@@ -206,7 +212,6 @@ const Facility = () => {
                 <div className="inline-block mb-4">
                   <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
                     ICT Laboratory
-                    <span className="absolute -bottom-2 left-0 right-0 h-1 bg-jorc-green rounded-full" />
                   </h2>
                 </div>
                 <p className="text-muted-foreground mt-6 leading-relaxed">
@@ -265,7 +270,6 @@ const Facility = () => {
                 <div className="inline-block mb-4">
                   <h2 className="text-3xl font-bold text-jorc-green relative inline-block mt-1">
                     Standard Library
-                    <span className="absolute -bottom-2 left-0 right-0 h-1 bg-jorc-green rounded-full" />
                   </h2>
                 </div>
                 <p className="text-muted-foreground mt-6 leading-relaxed">
@@ -323,7 +327,6 @@ const Facility = () => {
                 <div className="inline-block mb-4">
                   <h2 className="text-3xl font-bold text-jorc-green relative inline-block mt-1">
                     Multimedia Room
-                    <span className="absolute -bottom-2 left-0 right-0 h-1 bg-jorc-green rounded-full" />
                   </h2>
                 </div>
                   <p className="text-muted-foreground mt-6 leading-relaxed">

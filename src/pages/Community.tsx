@@ -179,13 +179,19 @@ const Community = () => {
     setOpenCompose(false);
   };
 
-  const submitComment = () => {
+  const submitComment = async () => {
     if (!commentName.trim() || !commentText.trim()) {
       toast({ title: "Please fill in your name and comment", variant: "destructive" });
       return;
     }
     if (!viewPost) return;
     setSubmittingComment(true);
+    const { error } = await supabase.from("comments").insert({
+      post_id: viewPost.id,
+      author_name: commentName.trim(),
+      content: commentText.trim(),
+    });
+    if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); setSubmittingComment(false); return; }
     const newComment: Comment = {
       id: `c${Date.now()}`,
       post_id: viewPost.id,

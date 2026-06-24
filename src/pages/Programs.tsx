@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -218,7 +219,6 @@ const Programs = () => {
             <div className="inline-block">
               <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
                 Core Programs
-                <span className="absolute -bottom-2 left-1/4 right-1/4 h-1 bg-jorc-green rounded-full" />
               </h2>
             </div>
             <p className="text-muted-foreground mt-6 max-w-2xl mx-auto">
@@ -307,7 +307,6 @@ const Programs = () => {
               <div className="inline-block">
                 <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
                   Future Planned Programs
-                  <span className="absolute -bottom-2 left-1/4 right-1/4 h-1 bg-jorc-green rounded-full" />
                 </h2>
               </div>
               <p className="text-muted-foreground mt-6 max-w-2xl mx-auto">
@@ -361,7 +360,19 @@ const Programs = () => {
           ) : (
             <>
               <DialogTitle className="text-jorc-green text-xl font-bold">Register for a Program</DialogTitle>
-              <form className="space-y-4 mt-4" onSubmit={(e) => { e.preventDefault(); setRegSubmitted(true); toast({ title: "Registration submitted!", description: "We'll reach out to you shortly." }); }}>
+              <form className="space-y-4 mt-4" onSubmit={async (e) => {
+                e.preventDefault();
+                const name = (document.getElementById("name") as HTMLInputElement)?.value;
+                const email = (document.getElementById("email") as HTMLInputElement)?.value;
+                const phone = (document.getElementById("phone") as HTMLInputElement)?.value;
+                const message = (document.getElementById("message") as HTMLTextAreaElement)?.value;
+                const { error } = await supabase.from("program_registrations").insert({
+                  program: selectedProgram, full_name: name, email, phone, message: message || null,
+                });
+                if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); return; }
+                setRegSubmitted(true);
+                toast({ title: "Registration submitted!", description: "We'll reach out to you shortly." });
+              }}>
                 <div className="space-y-2">
                   <Label htmlFor="prog">Program</Label>
                   <Select value={selectedProgram} onValueChange={setSelectedProgram}>
