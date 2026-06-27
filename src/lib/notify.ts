@@ -12,7 +12,8 @@ export async function sendEmailNotification(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ formType, data }),
     });
-    if (!res.ok) console.warn("Email notification failed", await res.text());
+    const text = await res.text();
+    if (!res.ok) console.warn("Email notification failed:", text);
   } catch (e) {
     console.warn("Email notification error:", e);
   }
