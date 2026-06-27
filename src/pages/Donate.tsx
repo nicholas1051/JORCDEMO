@@ -181,7 +181,7 @@ const Donate = () => {
       `}</style>
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative py-20 md:py-28 flex items-center justify-center overflow-hidden">
+      <section className="relative py-16 md:py-28 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0" style={{ background: "#1A472A" }}>
           <div
             className="absolute inset-0"
@@ -200,10 +200,10 @@ const Donate = () => {
             }}
           />
           {/* Floating circles */}
-          <div className="floating-circle w-32 h-32 -top-6 -left-6 bg-jorc-green-light" style={{ animation: "float-circle 6s ease-in-out infinite" }} />
-          <div className="floating-circle w-24 h-24 top-1/3 -right-4 bg-jorc-green-light" style={{ animation: "float-circle-delayed 8s ease-in-out infinite" }} />
-          <div className="floating-circle w-40 h-40 bottom-0 left-1/4 bg-jorc-green" style={{ animation: "float-circle 7s ease-in-out infinite 1s" }} />
-          <div className="floating-circle w-20 h-20 top-1/4 left-1/2 bg-[#FFCE1B]" style={{ animation: "float-circle-delayed 9s ease-in-out infinite 2s" }} />
+          <div className="floating-circle hidden md:block w-32 h-32 -top-6 -left-6 bg-jorc-green-light" style={{ animation: "float-circle 6s ease-in-out infinite" }} />
+          <div className="floating-circle hidden md:block w-24 h-24 top-1/3 -right-4 bg-jorc-green-light" style={{ animation: "float-circle-delayed 8s ease-in-out infinite" }} />
+          <div className="floating-circle hidden md:block w-40 h-40 bottom-0 left-1/4 bg-jorc-green" style={{ animation: "float-circle 7s ease-in-out infinite 1s" }} />
+          <div className="floating-circle hidden md:block w-20 h-20 top-1/4 left-1/2 bg-[#FFCE1B]" style={{ animation: "float-circle-delayed 9s ease-in-out infinite 2s" }} />
         </div>
 
         <div className="relative z-10 text-center max-w-4xl px-5">
@@ -214,7 +214,7 @@ const Donate = () => {
             className="font-black mb-6 leading-tight"
             style={{
               fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "clamp(1.75rem, 5vw, 3.25rem)",
+              fontSize: "clamp(1.5rem, 5vw, 3.25rem)",
               color: "#fff",
             }}
           >
@@ -244,7 +244,7 @@ const Donate = () => {
 
       {/* ═══════ DONATION FORM ═══════ */}
       {showForm && (
-      <section id="donate-form" className="py-16 md:py-20 relative overflow-hidden">
+      <section id="donate-form" className="py-12 md:py-20 relative overflow-hidden">
         {/* (8) Background shimmer */}
         <div className="absolute inset-0 bg-jorc-green-lighter" />
         <div className="absolute inset-0" style={{
@@ -280,7 +280,7 @@ const Donate = () => {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-6 md:p-8 shadow-soft border border-jorc-green-lighter space-y-5 relative">
+          <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-4 md:p-8 shadow-soft border border-jorc-green-lighter space-y-5 relative">
             {/* (8) subtle shimmer inside form */}
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-jorc-green/20 to-transparent" />
 
@@ -476,9 +476,9 @@ const Donate = () => {
       )}
 
       {/* ═══════ WHERE YOUR MONEY GOES + WHY SUPPORT (merged) ═══════ */}
-      <section id="donut-section" className="py-16 md:py-20 bg-background reveal">
+      <section id="donut-section" className="py-12 md:py-20 bg-background reveal">
         <div className="max-w-6xl mx-auto px-5">
-          <div className="grid md:grid-cols-2 gap-10 items-start">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-10 items-start">
             {/* LEFT — Where Your Money Goes */}
             <div>
               <div className="text-center md:text-left mb-8">
@@ -583,14 +583,14 @@ const Donate = () => {
       </section>
 
       {/* ═══════ TRUST & TRANSPARENCY ═══════ */}
-      <section className="py-16 md:py-20 bg-background reveal">
+      <section className="py-12 md:py-20 bg-background reveal">
         <div className="max-w-4xl mx-auto px-5">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-jorc-green mb-4 reveal" style={{ transitionDelay: "0.1s" }}>
               Trust & Transparency
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
             {[
               { icon: Shield, title: "Secure Giving", desc: "All financial transactions are secured and encrypted using our payment processing partners." },
               { icon: FileText, title: "Governance", desc: "JORC operates under the strict guidelines of the Francisca and Jonah Otunla Foundation, adhering to international non-profit transparency and auditing standards." },

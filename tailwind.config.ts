@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Poppins", "system-ui", "sans-serif"],
+      },
       colors: {
         "jorc-green": {
           DEFAULT: "#1A472A",

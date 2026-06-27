@@ -170,7 +170,7 @@ const Facility = () => {
 
       {/* Hero Banner */}
       <section
-        className="relative overflow-hidden min-h-[300px] flex items-center justify-center"
+        className="relative overflow-hidden min-h-[260px] flex items-center justify-center"
         style={{
           backgroundImage: `linear-gradient(rgba(26, 71, 42, 0.88), rgba(26, 71, 42, 0.65)), url(https://i.postimg.cc/Y2sXFJY1/20260423-083905.jpg)`,
           backgroundSize: "cover",
@@ -190,12 +190,12 @@ const Facility = () => {
             <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white/90 text-sm px-4 py-1.5 rounded-full mb-4">
               State-of-the-Art Facilities
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
               Our Facilities
             </h1>
           </div>
           <div className="reveal" style={{ transitionDelay: "0.3s" }}>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
               Three specialised spaces designed for learning, research, and creative production.
             </p>
           </div>
@@ -210,7 +210,7 @@ const Facility = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
               <div className="reveal-left">
                 <div className="inline-block mb-4">
-                  <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
+                  <h2 className="text-2xl md:text-3xl font-bold text-jorc-green relative inline-block">
                     ICT Laboratory
                   </h2>
                 </div>
@@ -226,7 +226,7 @@ const Facility = () => {
             </div>
 
             {/* Lab feature cards */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-10">
               {labFeatures.map((f, i) => (
                 <Card key={i} className="group relative overflow-hidden bg-jorc-green border-jorc-green text-white hover:shadow-lg hover:-translate-y-0.5 hover:bg-jorc-green-light card-glow transition-all duration-300 reveal cursor-pointer" style={{ transitionDelay: `${i * 0.08}s` }}>
                   <div className="absolute left-0 top-3 bottom-3 w-1 bg-white/80 rounded-r scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
@@ -268,7 +268,7 @@ const Facility = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
               <div className="reveal-left lg:order-2">
                 <div className="inline-block mb-4">
-                  <h2 className="text-3xl font-bold text-jorc-green relative inline-block mt-1">
+                  <h2 className="text-2xl md:text-3xl font-bold text-jorc-green relative inline-block mt-1">
                     Standard Library
                   </h2>
                 </div>
@@ -283,7 +283,7 @@ const Facility = () => {
             </div>
 
             {/* Library feature cards */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-10">
               {libraryFeatures.map((f, i) => (
                 <Card key={i} className="group relative overflow-hidden bg-jorc-green border-jorc-green text-white hover:shadow-lg hover:-translate-y-0.5 hover:bg-jorc-green-light card-glow transition-all duration-300 reveal cursor-pointer" style={{ transitionDelay: `${i * 0.08}s` }}>
                   <div className="absolute left-0 top-3 bottom-3 w-1 bg-white/80 rounded-r scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
@@ -325,7 +325,7 @@ const Facility = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
               <div className="reveal-left">
                 <div className="inline-block mb-4">
-                  <h2 className="text-3xl font-bold text-jorc-green relative inline-block mt-1">
+                  <h2 className="text-2xl md:text-3xl font-bold text-jorc-green relative inline-block mt-1">
                     Multimedia Room
                   </h2>
                 </div>
@@ -340,7 +340,7 @@ const Facility = () => {
             </div>
 
             {/* Multimedia feature cards */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-10">
               {multimediaFeatures.map((f, i) => (
                 <Card key={i} className="group relative overflow-hidden bg-jorc-green border-jorc-green text-white hover:shadow-lg hover:-translate-y-0.5 hover:bg-jorc-green-light card-glow transition-all duration-300 reveal cursor-pointer" style={{ transitionDelay: `${i * 0.08}s` }}>
                   <div className="absolute left-0 top-3 bottom-3 w-1 bg-white/80 rounded-r scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
@@ -378,7 +378,7 @@ const Facility = () => {
               {!showBookingForm ? (
                 <Button
                   onClick={() => setShowBookingForm(true)}
-                  className="px-8 py-6 text-lg bg-jorc-green hover:bg-jorc-green-light text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  className="px-6 md:px-8 py-5 md:py-6 text-base md:text-lg bg-jorc-green hover:bg-jorc-green-light text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
                 >
                   <Calendar className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
                   Book the Multimedia Room
@@ -397,7 +397,7 @@ const Facility = () => {
 
             {/* Booking Form — only for Multimedia Room */}
             {showBookingForm && (
-              <div className="bg-gradient-to-br from-jorc-green-lighter via-white to-jorc-green-lighter rounded-2xl p-6 md:p-10 shadow-lg animate-in" style={{ animation: "fadeSlideIn 0.4s ease-out" }}>
+              <div className="bg-gradient-to-br from-jorc-green-lighter via-white to-jorc-green-lighter rounded-2xl p-4 md:p-10 shadow-lg animate-in" style={{ animation: "fadeSlideIn 0.4s ease-out" }}>
                 <style>{`
                   @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
                   @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
@@ -574,7 +574,7 @@ const Facility = () => {
                               </div>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                               <div className="input-icon">
                                 <Calendar className="input-icon-left h-4 w-4" />
                                 <Input

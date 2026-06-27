@@ -113,8 +113,9 @@ function TypewriterHeading() {
     <h1
       className="font-bold leading-tight mb-6"
       style={{
-        fontFamily: "'Playfair Display', Georgia, serif",
+        fontFamily: "'Poppins', sans-serif",
         fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
+        fontWeight: 800,
       }}
     >
       <span
@@ -134,17 +135,15 @@ function TypewriterHeading() {
 
 function StatsMarquee() {
   return (
-    <div className="relative z-20 px-5 pt-6 reveal">
+    <div className="relative z-20 reveal">
       <div
-        className="rounded-xl p-6 overflow-hidden border-2 transition-all duration-500 hover:shadow-[0_0_25px_rgba(40,80,46,0.12)]"
+        className="overflow-hidden border-2 transition-all duration-500 hover:shadow-[0_0_25px_rgba(40,80,46,0.12)]"
         style={{
-          background: "rgba(255,255,255,0.15)",
-          backdropFilter: "blur(40px)",
-          WebkitBackdropFilter: "blur(40px)",
-          borderColor: "rgba(40,80,46,0.3)",
+          background: "#1A472A",
+          borderColor: "rgba(255,255,255,0.1)",
         }}
       >
-        <div className="animate-marquee flex w-max">
+        <div className="animate-marquee flex w-max px-5 py-4">
           {[...STATS, ...STATS].map((s, i) => (
             <div key={i} className="flex items-center gap-4 whitespace-nowrap group/stat transition-all duration-300 hover:scale-110 mx-[26px]">
               <span
@@ -159,12 +158,12 @@ function StatsMarquee() {
               >
                 {s.n}
               </span>
-              <span className="text-sm md:text-base font-semibold text-jorc-green transition-all duration-300 group-hover/stat:text-[#FFCE1B]">
+              <span className="text-sm md:text-base font-semibold text-white/80 transition-all duration-300 group-hover/stat:text-[#FFCE1B]">
                 {s.l}
               </span>
               <span
                 className="w-px h-8 flex-shrink-0"
-                style={{ background: "rgba(40,80,46,0.2)" }}
+                style={{ background: "rgba(255,255,255,0.2)" }}
               />
             </div>
           ))}
@@ -288,7 +287,7 @@ function ProgramCard({ p }: { p: typeof HOME_PROGRAMS[0] }) {
             }}
           >
             <Link to="/programs">
-              Learn More <span className="ml-1 inline-block transition-all duration-300 group-hover/btn:translate-x-1" aria-hidden="true">→</span>
+              Learn More
             </Link>
           </Button>
         </div>
@@ -353,40 +352,39 @@ const Index = () => {
               background: "radial-gradient(ellipse at 30% 50%, rgba(255,206,27,0.12), transparent 60%)",
             }}
           />
-          {/* Floating circles */}
-          <div className="floating-circle w-36 h-36 -top-8 -left-8 bg-jorc-green-light" style={{ animation: "float-circle 6s ease-in-out infinite" }} />
-          <div className="floating-circle w-28 h-28 top-1/3 -right-4 bg-jorc-green-light" style={{ animation: "float-circle 8s ease-in-out infinite 1s" }} />
-          <div className="floating-circle w-44 h-44 bottom-0 left-1/4 bg-jorc-green" style={{ animation: "float-circle 7s ease-in-out infinite 0.5s" }} />
-          <div className="floating-circle w-20 h-20 top-1/4 right-1/3 bg-[#FFCE1B]" style={{ animation: "float-circle 9s ease-in-out infinite 2s" }} />
+          {/* Floating circles - hidden on mobile to prevent overflow */}
+          <div className="hidden md:block floating-circle w-36 h-36 -top-8 -left-8 bg-jorc-green-light" style={{ animation: "float-circle 6s ease-in-out infinite" }} />
+          <div className="hidden md:block floating-circle w-28 h-28 top-1/3 -right-4 bg-jorc-green-light" style={{ animation: "float-circle 8s ease-in-out infinite 1s" }} />
+          <div className="floating-circle w-24 h-24 md:w-44 md:h-44 bottom-0 left-1/4 bg-jorc-green" style={{ animation: "float-circle 7s ease-in-out infinite 0.5s" }} />
+          <div className="floating-circle w-16 h-16 md:w-20 md:h-20 top-1/4 right-1/3 bg-[#FFCE1B]" style={{ animation: "float-circle 9s ease-in-out infinite 2s" }} />
         </div>
 
-        <div className="relative z-10 text-center max-w-4xl px-5">
+        <div className="relative z-10 text-center max-w-4xl px-5 py-12">
           <TypewriterHeading />
-          <p className="text-white/85 text-lg md:text-xl mb-10 max-w-3xl mx-auto reveal" style={{ transitionDelay: "0.2s" }}>
-            A hub for digital literacy, leadership, and innovation across Africa — empowering
-            individuals with access to high-quality learning resources and opportunities.
+          <p className="text-white/85 text-base md:text-xl mb-8 md:mb-10 max-w-3xl mx-auto reveal px-2" style={{ transitionDelay: "0.2s" }}>
+            A community hub where learning, technology, mentorship and opportunity come together.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap reveal" style={{ transitionDelay: "0.35s" }}>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center flex-wrap reveal" style={{ transitionDelay: "0.35s" }}>
             <Button
               asChild
               size="lg"
-              className="font-bold shadow-lg border-0 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,206,27,0.4)] group"
+              className="font-bold shadow-lg border-0 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,206,27,0.4)] group w-full sm:w-auto"
               style={{
                 background: "linear-gradient(135deg, #FFCE1B, #FFCE1B)",
                 color: "#1a1a2e",
               }}
             >
               <Link to="/programs">
-                Register <span className="ml-1 inline-block transition-all duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
+                Register
               </Link>
             </Button>
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="border-white/60 text-white bg-transparent transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:bg-white hover:text-jorc-green"
+              className="border-white/60 text-white bg-transparent transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:bg-white hover:text-jorc-green w-full sm:w-auto"
             >
-              <Link to="/facility">Book the Lab</Link>
+              <Link to="/contact#book-facility">Book Our Facility</Link>
             </Button>
           </div>
         </div>
@@ -396,7 +394,7 @@ const Index = () => {
       <StatsMarquee />
 
       {/* ═══════ ABOUT INTRO ═══════ */}
-      <section className="py-16 bg-background reveal">
+      <section className="py-12 md:py-16 bg-background reveal">
         <div className="container mx-auto px-5 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-jorc-green mb-6 reveal" style={{ transitionDelay: "0.1s" }}>
             About JORC
@@ -409,7 +407,7 @@ const Index = () => {
           <div className="reveal" style={{ transitionDelay: "0.3s" }}>
           <Button asChild variant="outline" className="group transition-all duration-300 hover:border-jorc-green">
             <Link to="/about">
-              Learn More <span className="ml-1 inline-block transition-all duration-300 group-hover:translate-x-1.5" aria-hidden="true">→</span>
+              Learn More
             </Link>
           </Button>
           </div>
@@ -417,7 +415,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ EVENT GALLERY ═══════ */}
-      <section className="py-16 bg-jorc-green-lighter reveal">
+      <section className="py-12 md:py-16 bg-jorc-green-lighter reveal">
         <div className="container mx-auto px-5">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-jorc-green mb-4 reveal" style={{ transitionDelay: "0.1s" }}>
@@ -436,7 +434,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ PROGRAMS HIGHLIGHT ═══════ */}
-      <section className="py-16 bg-jorc-green-lighter reveal">
+      <section className="py-12 md:py-16 bg-jorc-green-lighter reveal">
         <div className="container mx-auto px-5 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-jorc-green mb-4 reveal" style={{ transitionDelay: "0.1s" }}>Our Programs</h2>
           <p className="text-base md:text-lg mb-10 max-w-2xl mx-auto text-muted-foreground reveal" style={{ transitionDelay: "0.2s" }}>
@@ -455,12 +453,12 @@ const Index = () => {
       </section>
 
       {/* ═══════ WHY JORC ═══════ */}
-      <section className="py-16 bg-background reveal">
+      <section className="py-12 md:py-16 bg-background reveal">
         <div className="container mx-auto px-5">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-jorc-green mb-6 reveal" style={{ transitionDelay: "0.1s" }}>
-                Why Choose JORC?
+                The Value We Bring
               </h2>
               <p className="text-base md:text-lg text-muted-foreground mb-8 reveal" style={{ transitionDelay: "0.2s" }}>
                 We are committed to delivering quality education that creates lasting impact in our
@@ -493,7 +491,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ TESTIMONIALS ═══════ */}
-      <section className="py-16 bg-jorc-green-lighter reveal">
+      <section className="py-12 md:py-16 bg-jorc-green-lighter reveal">
         <div className="container mx-auto px-5 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-jorc-green mb-4 reveal" style={{ transitionDelay: "0.1s" }}>
             What Our Community Says
@@ -544,7 +542,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ CTA BANNER ═══════ */}
-      <section className="py-12 text-white relative overflow-hidden reveal" style={{ background: "#1A472A" }}>
+      <section className="py-10 md:py-12 text-white relative overflow-hidden reveal" style={{ background: "#1A472A" }}>
         {/* Animated dot grid */}
         <div className="absolute inset-0 opacity-[0.04]" style={{
           backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)",
@@ -558,15 +556,15 @@ const Index = () => {
           <p className="text-base md:text-lg opacity-90 mb-6 reveal" style={{ transitionDelay: "0.2s" }}>
             Transform your future with our digital literacy programs. Enroll today and take the first step!
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center reveal" style={{ transitionDelay: "0.3s" }}>
-            <Button asChild variant="secondary" size="lg" className="transition-all duration-300 hover:scale-105 hover:shadow-lg">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center reveal" style={{ transitionDelay: "0.3s" }}>
+            <Button asChild variant="secondary" size="lg" className="transition-all duration-300 hover:scale-105 hover:shadow-lg w-full sm:w-auto">
               <Link to="/programs">View Programs</Link>
             </Button>
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="bg-transparent border-white text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:bg-white hover:text-jorc-green"
+              className="bg-transparent border-white text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:bg-white hover:text-jorc-green w-full sm:w-auto"
             >
               <Link to="/contact">Contact Us</Link>
             </Button>

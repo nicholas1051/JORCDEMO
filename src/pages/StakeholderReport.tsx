@@ -285,7 +285,7 @@ const StakeholderReport = () => {
     <div ref={sectionRef} className="text-gray-800" style={{ fontFamily: "Montserrat,-apple-system,sans-serif", backgroundColor: "#F2EEE8" }}>
       <style>{`
         :root{--green:#1B4332;--green-mid:#2d6a4f;--green-light:#2d6a4f;--cream:#F2EEE8;--gold:#FFD700;--gold-light:#FFED4A;}
-        h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;letter-spacing:-0.01em;}
+        h1,h2,h3,h4{font-family:'Poppins',sans-serif;letter-spacing:-0.01em;}
         .hero-bg{background:var(--green);position:relative;overflow:hidden;}
         .hero-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.3) 100%);pointer-events:none;}
         .hero-pattern{background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.08) 1px,transparent 0);background-size:40px 40px;}
@@ -341,7 +341,7 @@ const StakeholderReport = () => {
       {/* Back to top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className={`fixed bottom-8 right-8 z-50 w-12 h-12 bg-jorc-green text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#2d5a44] transition-all hover:scale-110 ${showBackToTop ? "opacity-100 visible translate-y-0" : "opacity-0 invisible translate-y-2.5"}`}
+        className={`fixed bottom-5 md:bottom-8 right-5 md:right-8 z-50 w-10 h-10 md:w-12 md:h-12 bg-jorc-green text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#2d5a44] transition-all hover:scale-110 ${showBackToTop ? "opacity-100 visible translate-y-0" : "opacity-0 invisible translate-y-2.5"}`}
         style={{ transition: "all 0.3s ease" }}
         aria-label="Back to top"
       >
@@ -363,7 +363,7 @@ const StakeholderReport = () => {
       </div>
 
       {/* ═══ HERO ═══ */}
-      <section className="hero-bg hero-pattern min-h-screen flex flex-col justify-center px-6 md:px-20 py-24 relative">
+      <section className="hero-bg hero-pattern min-h-screen flex flex-col justify-center px-5 md:px-20 py-16 md:py-24 relative">
         <div className="noise-overlay" />
         <div className="absolute inset-0 hero-pattern opacity-20" />
         <div className="absolute w-96 h-96 rounded-full bg-green-400/5 -top-20 -right-20 pointer-events-none" />
@@ -373,9 +373,9 @@ const StakeholderReport = () => {
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             Year One · Annual Impact Report · 2025–2026
           </div>
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div style={{ animation: "fadeInLeft 0.8s 0.1s ease both" }}>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
+              <h1 className="text-3xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
                 <span className="block">The Need</span>
                 <span className="block text-gold">Is Real.</span>
                 <span className="block">The Model</span>
@@ -460,7 +460,7 @@ const StakeholderReport = () => {
       </section>
 
       {/* Ticker Ribbon */}
-      <div className="bg-jorc-green py-3 overflow-hidden relative">
+      <div className="bg-jorc-green py-2 md:py-3 overflow-hidden relative">
         <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-jorc-green to-transparent z-10" />
         <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-jorc-green to-transparent z-10" />
         <div className="animate-marquee whitespace-nowrap text-xs font-semibold tracking-widest uppercase">
@@ -470,18 +470,18 @@ const StakeholderReport = () => {
       </div>
 
       {/* Hero Photo */}
-      <div className="px-6 md:px-12 lg:px-20 py-10 max-w-7xl mx-auto reveal">
+      <div className="px-5 md:px-12 lg:px-20 py-6 md:py-10 max-w-7xl mx-auto reveal">
         <img src="https://lh3.googleusercontent.com/d/1Gts7V6z3BT6CZNCE9fWfQWHGHppmcBgx" alt="JORC building aerial shot" className="rounded-3xl h-72 md:h-96 w-full object-cover shadow-lg" />
       </div>
 
       {/* ═══ EXECUTIVE SUMMARY ═══ */}
-      <section id="executive-summary" className="px-6 md:px-12 lg:px-20 py-16 max-w-7xl mx-auto">
+      <section id="executive-summary" className="px-5 md:px-12 lg:px-20 py-12 md:py-16 max-w-7xl mx-auto">
         <div className="text-center mb-14 reveal">
           <span className="pill mb-4 inline-block">Executive Summary</span>
           <h2 className="text-3xl md:text-5xl text-jorc-green font-bold mb-4">A Year That Proved the Model</h2>
           <p className="text-gray-500 max-w-2xl mx-auto leading-relaxed">In many rural communities across Nigeria, talent is abundant — but opportunity is not. JORC was established to change this reality.</p>
         </div>
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid lg:grid-cols-3 gap-6 md:gap-8 mb-16">
           <div className="lg:col-span-2 space-y-5 reveal-left">
             <p className="text-gray-700 leading-relaxed">Within one year, JORC registered <strong className="text-jorc-green">1,001 community members</strong>, recorded over <strong className="text-jorc-green">6,500 purposeful visits</strong>, built a library of more than <strong className="text-jorc-green">1,400 books</strong>, trained <strong className="text-jorc-green">330 beneficiaries in digital skills</strong>, and prepared <strong className="text-jorc-green">134 students</strong> for computer-based examinations.</p>
             <p className="text-gray-700 leading-relaxed">Through <strong>#DigitalAccessForAll</strong>, learners acquired practical ICT skills, explored AI tools, and developed competencies increasingly required in today's economy. Female participation remained above <strong>56%</strong>. Through <strong>#InclusiveLibraryAccess</strong>, the Reading Club served 20+ children and 3,200+ library visits were recorded.</p>
@@ -506,7 +506,7 @@ const StakeholderReport = () => {
             </div>
           </div>
         </div>
-        <div className="grid md:grid-cols-3 gap-5 reveal">
+        <div className="grid md:grid-cols-3 gap-4 md:gap-5 reveal">
           {[
             { src: "https://lh3.googleusercontent.com/d/1a_51De0qkSkMC6fhKyo5npcOrPGuIqFg", cap: "Learners in the ICT laboratory during a #DigitalAccessForAll session" },
             { src: "https://lh3.googleusercontent.com/d/1dUYKjQfKgzp21KSKnAw2StvaKXPe7F2S", cap: "The JORC Library — a trusted hub for over 400 regular users" },
@@ -523,7 +523,7 @@ const StakeholderReport = () => {
       <div className="section-divider max-w-3xl" />
 
       {/* ═══ IMPACT STATS ═══ */}
-      <section id="impact" className="bg-jorc-green py-20 px-6 md:px-12 lg:px-20 relative overflow-hidden">
+      <section id="impact" className="bg-jorc-green py-12 md:py-20 px-6 md:px-12 lg:px-20 relative overflow-hidden">
         <div className="absolute inset-0 hero-pattern opacity-10" />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-14 reveal">
@@ -531,9 +531,9 @@ const StakeholderReport = () => {
             <h2 className="text-3xl md:text-5xl text-white font-bold mb-3">Numbers That Tell the Story</h2>
             <p className="text-white/60 max-w-xl mx-auto">Every figure below is a community member whose life changed because access arrived.</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mb-12">
             {stats.map((s, i) => (
-              <div key={i} className={`stat-card reveal stagger-${(i % 4) + 1} bg-white rounded-2xl p-6 text-center flex flex-col items-center min-h-[180px] justify-center`}>
+              <div key={i} className={`stat-card reveal stagger-${(i % 4) + 1} bg-white rounded-2xl p-4 md:p-6 text-center flex flex-col items-center min-h-[150px] md:min-h-[180px] justify-center`}>
                 <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-3">
                   <SvgIcon name={s.icon} className="w-[22px] h-[22px] text-jorc-green" />
                 </div>
@@ -547,7 +547,7 @@ const StakeholderReport = () => {
 
           {/* Gender donut + Reach bars */}
           <div className="grid md:grid-cols-2 gap-6 reveal" ref={donutRef}>
-            <div className="bg-white rounded-2xl p-6 md:p-8">
+            <div className="bg-white rounded-2xl p-4 md:p-8">
               <div className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-6 text-center">Gender Distribution — All Programmes</div>
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="relative flex items-center justify-center shrink-0">
@@ -618,7 +618,7 @@ const StakeholderReport = () => {
       <div className="section-divider-gold max-w-3xl" />
 
       {/* ═══ PROGRAMMES ═══ */}
-      <section id="programmes" className="px-6 md:px-12 lg:px-20 py-20 max-w-7xl mx-auto">
+      <section id="programmes" className="px-5 md:px-12 lg:px-20 py-12 md:py-20 max-w-7xl mx-auto">
         <div className="text-center mb-16 reveal">
           <span className="pill mb-4 inline-block">Flagship Programmes</span>
           <h2 className="text-3xl md:text-5xl text-jorc-green font-bold mb-3">Two Programmes. One Mission.</h2>
@@ -633,7 +633,7 @@ const StakeholderReport = () => {
             <div className="h-px flex-1 bg-jorc-green/20" />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start mb-10">
+          <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-start mb-10">
             <div className="reveal-left">
               <h3 className="text-2xl md:text-3xl text-jorc-green font-bold mb-4">Bridging the Digital Divide</h3>
               <p className="text-gray-600 leading-relaxed mb-5">330+ beneficiaries trained across five strands — from an 8-week proof-of-concept Pilot to a Teachers' Digital Skills Workshop and the groundbreaking CBT Preparedness Programme. The AI module was the highest engagement driver in every cohort.</p>
@@ -759,7 +759,7 @@ const StakeholderReport = () => {
             <span className="inline-flex items-center gap-2 bg-jorc-green text-white px-5 py-2 rounded-full text-sm font-bold">#InclusiveLibraryAccess</span>
             <div className="h-px flex-1 bg-jorc-green/20" />
           </div>
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-start">
             <div className="reveal-left">
               <h3 className="text-2xl md:text-3xl text-jorc-green font-bold mb-4">From Borrowing Books to Building Futures</h3>
               <p className="text-gray-600 leading-relaxed mb-5">JORC Library grew into a platform for knowledge equity and human capital development. With 3,200+ visits, 400+ regular users, and a structured Reading Club — it became the community's primary knowledge hub.</p>
@@ -936,7 +936,7 @@ const StakeholderReport = () => {
             </div>
           ))}
         </div>
-        <div className="grid md:grid-cols-3 gap-5 reveal">
+        <div className="grid md:grid-cols-3 gap-4 md:gap-5 reveal">
           {[
             { src: "https://lh3.googleusercontent.com/d/1mB-WkWoqDLRsKY1xbLlBqUMapgmVfklh", cap: "Movie Day sensitisation programme" },
             { src: "https://lh3.googleusercontent.com/d/1riR9W_DsDeIwfJQniThpkTvmIH9TfPR5", cap: "Oke-Ogun Tech Conference — student wins scholarship" },

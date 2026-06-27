@@ -144,7 +144,7 @@ const About = () => {
         .film-fade-right { background: linear-gradient(to left, white 0%, transparent 100%); }
       `}</style>
       {/* Welcome Message - full width, joins the navbar */}
-      <section className="relative overflow-hidden min-h-[320px] flex items-center justify-center"
+      <section className="relative overflow-hidden min-h-[280px] flex items-center justify-center"
         style={{
           backgroundImage: `linear-gradient(rgba(26, 71, 42, 0.88), rgba(26, 71, 42, 0.65)), url(https://i.postimg.cc/JnQfmK2g/20260423-083708.jpg)`,
           backgroundSize: "cover",
@@ -162,17 +162,17 @@ const About = () => {
         </div>
         {/* Shimmer overlay */}
         <div className="absolute inset-0 shimmer-bg pointer-events-none" />
-        <div className="text-center py-16 px-6 max-w-4xl relative z-10">
+        <div className="text-center py-12 md:py-16 px-6 max-w-4xl relative z-10">
           <div className="reveal" style={{ transitionDelay: "0.1s" }}>
             <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white/90 text-sm px-4 py-1.5 rounded-full mb-4">
               Empowering the Future
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
               About JORC
             </h1>
           </div>
           <div className="reveal" style={{ transitionDelay: "0.3s" }}>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
               The Jonah Otunla Resource Center stands as a beacon of hope and transformation, 
               carrying forward the visionary legacy of Jonah Ogunniyi Otunla.
             </p>
@@ -198,7 +198,7 @@ const About = () => {
           {/* Fade edges */}
           <div className="absolute inset-y-0 left-0 w-16 z-10 pointer-events-none" style={{ background: "linear-gradient(to right, white 0%, transparent 100%)" }} />
           <div className="absolute inset-y-0 right-0 w-16 z-10 pointer-events-none" style={{ background: "linear-gradient(to left, white 0%, transparent 100%)" }} />
-          <div className="py-8">
+          <div className="py-4 md:py-8">
             <div className="flex gap-2 film-track">
               {[...storyImages, ...storyImages].map((img, i) => (
                 <button
@@ -214,14 +214,14 @@ const About = () => {
         </div>
       </section>
 
-      <div className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="py-12 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Founder's Vision */}
         <section className="mb-16">
           <div className="reveal">
             <div className="text-center mb-8">
               <div className="inline-block">
-                <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
+                <h2 className="text-2xl md:text-3xl font-bold text-jorc-green relative inline-block">
                   Founder's Vision
                 </h2>
               </div>
@@ -266,7 +266,7 @@ const About = () => {
           <div className="relative z-10">
             <div className="text-center mb-8">
               <div className="inline-block">
-                <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
+                <h2 className="text-2xl md:text-3xl font-bold text-jorc-green relative inline-block">
                   Our Story
                                   </h2>
               </div>
@@ -350,12 +350,12 @@ const About = () => {
         <section className="mb-16">
           <div className="text-center mb-12 reveal">
             <div className="inline-block">
-              <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
+              <h2 className="text-2xl md:text-3xl font-bold text-jorc-green relative inline-block">
                 Our Core Values
                 </h2>
             </div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {values.map((value, index) => (
               <div key={index} className="reveal" style={{ transitionDelay: `${index * 0.12}s` }}>
                 <Card
@@ -381,7 +381,7 @@ const About = () => {
         <section className="mb-16">
           <div className="text-center mb-4 reveal">
             <div className="inline-block">
-              <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
+              <h2 className="text-2xl md:text-3xl font-bold text-jorc-green relative inline-block">
                 Our Impact Areas
                 </h2>
             </div>
@@ -393,12 +393,12 @@ const About = () => {
             {impactAreas.map((area, index) => (
               <div key={index} className="reveal" style={{ transitionDelay: `${index * 0.15}s` }}>
                 <div className="flex rounded-xl overflow-hidden border border-jorc-green bg-jorc-green text-white shadow-soft hover:shadow-strong transition-all duration-300 group hover:scale-[1.05] card-glow">
-                  <div className="w-44 flex-shrink-0 overflow-hidden relative">
+                  <div className="w-32 md:w-44 flex-shrink-0 overflow-hidden relative">
                     <img src={area.image} alt={area.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-jorc-green/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
                   <div className="flex-1 p-6">
-                    <h3 className="text-xl font-bold text-white mb-2">{area.title}</h3>
+                    <h3 className="text-base md:text-xl font-bold text-white mb-2">{area.title}</h3>
                     <p className="text-white/80">{area.desc}</p>
                     <div className="h-1 w-12 bg-white/50 rounded mt-4 transition-all duration-300 group-hover:w-20"></div>
                   </div>
@@ -412,7 +412,7 @@ const About = () => {
         <section>
           <div className="text-center mb-4 reveal">
             <div className="inline-block">
-              <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
+              <h2 className="text-2xl md:text-3xl font-bold text-jorc-green relative inline-block">
                 Our Team
                 </h2>
             </div>
@@ -425,7 +425,7 @@ const About = () => {
               <div key={index} className="reveal-scale" style={{ transitionDelay: `${index * 0.12}s` }}>
                 <Card className="text-center bg-jorc-green text-white border-jorc-green hover:scale-[1.08] transition-all duration-300 group hover:shadow-strong card-glow">
                   <CardHeader>
-                    <div className="h-28 w-28 rounded-full overflow-hidden mx-auto mb-4 ring-4 ring-white/30 group-hover:ring-white/60 group-hover:scale-110 transition-all duration-300">
+                    <div className="h-24 w-24 md:h-28 md:w-28 rounded-full overflow-hidden mx-auto mb-4 ring-4 ring-white/30 group-hover:ring-white/60 group-hover:scale-110 transition-all duration-300">
                       <img src={member.photo} alt={member.name} className="w-full h-full object-cover" />
                     </div>
                     <CardTitle className="text-white">{member.name}</CardTitle>

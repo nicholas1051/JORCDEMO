@@ -6,6 +6,7 @@ import { Toaster } from "@/components/toaster";
 import Index from "@/pages/Index";
 import About from "@/pages/About";
 import Community from "@/pages/Community";
+import AdminCommunity from "@/pages/AdminCommunity";
 import Contact from "@/pages/Contact";
 import Facility from "@/pages/Facility";
 import Programs from "@/pages/Programs";
@@ -23,6 +24,7 @@ const App = () => {
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
               <Route path="/community" element={<Community />} />
+              <Route path="/community/admin" element={<AdminCommunity />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/facility" element={<Facility />} />
               <Route path="/programs" element={<Programs />} />

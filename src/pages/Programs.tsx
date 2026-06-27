@@ -157,7 +157,7 @@ const Programs = () => {
 
       {/* Hero Banner */}
       <section
-        className="relative overflow-hidden min-h-[320px] flex items-center justify-center"
+        className="relative overflow-hidden min-h-[260px] flex items-center justify-center"
         style={{
           backgroundImage: `linear-gradient(rgba(26, 71, 42, 0.88), rgba(26, 71, 42, 0.65)), url(https://i.postimg.cc/9Xnx9vZ1/20260423-083856.jpg)`,
           backgroundSize: "cover",
@@ -180,12 +180,12 @@ const Programs = () => {
             <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white/90 text-sm px-4 py-1.5 rounded-full mb-4">
               Empowering the Future
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
               Our Programs
             </h1>
           </div>
           <div className="reveal" style={{ transitionDelay: "0.3s" }}>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
               Comprehensive training programs designed to empower individuals with digital skills 
               and prepare them for success in the modern economy.
             </p>
@@ -195,7 +195,7 @@ const Programs = () => {
 
       {/* Quick Stats Strip */}
       <div className="bg-jorc-green-light/30 border-y border-jorc-green-lighter">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
               { label: "Programs", value: "4" },
@@ -217,7 +217,7 @@ const Programs = () => {
         <section className="mb-16 pt-12">
           <div className="text-center mb-10 reveal">
             <div className="inline-block">
-              <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
+              <h2 className="text-2xl md:text-3xl font-bold text-jorc-green relative inline-block">
                 Core Programs
               </h2>
             </div>
@@ -225,7 +225,7 @@ const Programs = () => {
               Hands-on training designed to build real-world digital skills
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
             {mainPrograms.map((program, index) => (
               <div key={index} className="reveal" style={{ transitionDelay: `${index * 0.15}s` }}>
                 <Card className="group bg-jorc-green text-white border-jorc-green hover:shadow-strong card-glow transition-all duration-500 hover:scale-[1.02] overflow-hidden flex flex-col relative">
@@ -233,7 +233,7 @@ const Programs = () => {
                   <div className="absolute top-3 right-3 z-10 bg-jorc-green-light text-white text-xs font-bold px-2.5 py-1 rounded-full transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
                     {String(index + 1).padStart(2, "0")}
                   </div>
-                  <div className="h-44 overflow-hidden relative">
+                  <div className="h-36 md:h-44 overflow-hidden relative">
                     <img
                       src={programImages[index]}
                       alt={program.title}
@@ -296,7 +296,7 @@ const Programs = () => {
         </section>
 
         {/* Special Workshops */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-jorc-green-lighter via-white to-jorc-green-lighter rounded-2xl p-8 md:p-12">
+        <section className="relative overflow-hidden bg-gradient-to-br from-jorc-green-lighter via-white to-jorc-green-lighter rounded-2xl p-5 md:p-12">
           {/* Decorative background shapes */}
           <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-jorc-green/5 pointer-events-none" />
           <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-jorc-green/8 pointer-events-none" />
@@ -305,7 +305,7 @@ const Programs = () => {
           <div className="relative z-10">
             <div className="text-center mb-10 reveal">
               <div className="inline-block">
-                <h2 className="text-3xl font-bold text-jorc-green relative inline-block">
+                <h2 className="text-2xl md:text-3xl font-bold text-jorc-green relative inline-block">
                   Future Planned Programs
                 </h2>
               </div>
@@ -313,7 +313,7 @@ const Programs = () => {
                 Exciting programs in development to expand our impact
               </p>
             </div>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
               {workshops.map((workshop, index) => (
                 <div key={index} className="reveal reveal-scale" style={{ transitionDelay: `${index * 0.1}s` }}>
                   <Card className="group relative overflow-hidden border-jorc-green-lighter hover:border-jorc-green transition-all duration-400 card-glow-light hover:shadow-lg hover:-translate-y-1">

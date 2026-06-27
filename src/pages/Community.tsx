@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { MessageCircle, ThumbsUp, Pin, Send, ShieldCheck, Users, BookOpen, Loader2, ChevronDown, Reply } from "lucide-react";
+import { MessageCircle, ThumbsUp, Pin, Send, Users, BookOpen, Loader2, ChevronDown, Reply } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -309,23 +308,16 @@ const Community = () => {
       {/* Main content */}
       <div className="bg-jorc-grey/40 min-h-screen pb-10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between pt-8 mb-6 reveal">
-            <div>
-              <div className="inline-block">
-                <h1 className="text-2xl font-bold text-jorc-green relative inline-block">
-                  Community Feed
-                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-jorc-green rounded-full" />
-                </h1>
-              </div>
-              <p className="text-muted-foreground text-sm mt-3">
-                Discover stories, ask questions, and connect with the JORC community.
-              </p>
+          <div className="pt-8 mb-6 reveal">
+            <div className="inline-block">
+              <h1 className="text-2xl font-bold text-jorc-green relative inline-block">
+                Community Feed
+                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-jorc-green rounded-full" />
+              </h1>
             </div>
-            <Button asChild variant="ghost" size="sm">
-              <Link to="/community/admin" className="text-jorc-green">
-                <ShieldCheck className="h-4 w-4 mr-1" /> Admin
-              </Link>
-            </Button>
+            <p className="text-muted-foreground text-sm mt-3">
+              Discover stories, ask questions, and connect with the JORC community.
+            </p>
           </div>
 
           {/* Compose box */}
