@@ -261,17 +261,17 @@ const Community = () => {
           <div className="absolute w-6 h-6 rounded-full bg-white/5 top-2/3 left-1/5 animate-pulse" style={{ animationDuration: "7s" }} />
         </div>
         <div className="absolute inset-0 shimmer-bg pointer-events-none" />
-        <div className="text-center py-16 px-6 max-w-4xl relative z-10">
+        <div className="text-center py-12 md:py-16 px-6 max-w-4xl relative z-10">
           <div className="reveal" style={{ transitionDelay: "0.1s" }}>
             <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white/90 text-sm px-4 py-1.5 rounded-full mb-4">
               Connect & Share
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight">
               JORC Community
             </h1>
           </div>
           <div className="reveal" style={{ transitionDelay: "0.3s" }}>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
               Share your experience, ask questions, and learn from fellow learners.
             </p>
           </div>
@@ -281,7 +281,7 @@ const Community = () => {
       {/* Stats Strip */}
       <div className="bg-white border-b border-border">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <div className="flex items-stretch gap-4 py-5">
+          <div className="grid grid-cols-3 gap-2 md:gap-4 py-4 md:py-5">
             {[
               { label: "Community", value: "Active", icon: Users },
               { label: "Discussions", value: posts.length.toString(), icon: MessageCircle },
@@ -289,15 +289,15 @@ const Community = () => {
             ].map((stat, i) => (
               <div
                 key={i}
-                className="flex-1 bg-jorc-grey/30 rounded-lg border-l-4 border-r-4 px-4 py-3 flex items-center gap-3 reveal"
+                className="bg-jorc-grey/30 rounded-lg border-l-4 border-r-4 px-2 md:px-4 py-2 md:py-3 flex flex-col md:flex-row items-center gap-1 md:gap-3 reveal text-center md:text-left"
                 style={{ borderLeftColor: i === 1 ? "#2D6B3E" : "#1A472A", borderRightColor: i === 1 ? "#2D6B3E" : "#1A472A", transitionDelay: `${i * 0.12}s` }}
               >
-                <div className="h-10 w-10 rounded-full bg-white shadow-sm flex items-center justify-center">
-                  <stat.icon className="h-5 w-5 text-jorc-green" />
+                <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-white shadow-sm flex items-center justify-center flex-shrink-0">
+                  <stat.icon className="h-4 w-4 md:h-5 md:w-5 text-jorc-green" />
                 </div>
                 <div>
-                  <div className="text-lg font-bold text-jorc-green leading-none">{stat.value}</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">{stat.label}</div>
+                  <div className="text-sm md:text-lg font-bold text-jorc-green leading-none">{stat.value}</div>
+                  <div className="text-[10px] md:text-xs text-muted-foreground mt-0.5">{stat.label}</div>
                 </div>
               </div>
             ))}
@@ -308,14 +308,14 @@ const Community = () => {
       {/* Main content */}
       <div className="bg-jorc-grey/40 min-h-screen pb-10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <div className="pt-8 mb-6 reveal">
+          <div className="pt-6 md:pt-8 mb-5 md:mb-6 reveal">
             <div className="inline-block">
-              <h1 className="text-2xl font-bold text-jorc-green relative inline-block">
+              <h1 className="text-xl md:text-2xl font-bold text-jorc-green relative inline-block">
                 Community Feed
                 <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-jorc-green rounded-full" />
               </h1>
             </div>
-            <p className="text-muted-foreground text-sm mt-3">
+            <p className="text-muted-foreground text-xs md:text-sm mt-2 md:mt-3">
               Discover stories, ask questions, and connect with the JORC community.
             </p>
           </div>
@@ -324,15 +324,15 @@ const Community = () => {
           <div className="reveal">
             <Dialog open={openCompose} onOpenChange={setOpenCompose}>
               <DialogTrigger asChild>
-                <button className="w-full bg-white rounded-xl border border-border px-5 py-5 mb-5 flex items-center gap-3 text-left hover:shadow-lg hover:border-jorc-green/30 transition-all duration-300 group">
-                  <div className="h-12 w-12 rounded-full bg-jorc-green text-white flex items-center justify-center font-semibold group-hover:scale-110 transition-transform duration-300 text-lg">
+                <button className="w-full bg-white rounded-xl border border-border px-4 md:px-5 py-3 md:py-5 mb-4 md:mb-5 flex items-center gap-3 text-left hover:shadow-lg hover:border-jorc-green/30 transition-all duration-300 group">
+                  <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-jorc-green text-white flex items-center justify-center font-semibold group-hover:scale-110 transition-transform duration-300 text-base md:text-lg flex-shrink-0">
                     +
                   </div>
-                  <div className="flex-1">
-                    <span className="text-foreground font-medium group-hover:text-jorc-green transition-colors">
+                  <div className="flex-1 min-w-0">
+                    <span className="text-sm md:text-base text-foreground font-medium group-hover:text-jorc-green transition-colors">
                       Share with the community
                     </span>
-                    <p className="text-muted-foreground text-sm mt-0.5">
+                    <p className="text-muted-foreground text-xs md:text-sm mt-0.5 hidden md:block">
                       Share your experience, ask a question, or post an update…
                     </p>
                   </div>
@@ -343,7 +343,7 @@ const Community = () => {
                   <DialogTitle className="text-jorc-green">Share with the community</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={submitPost} className="space-y-3">
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <Label>Your name *</Label>
                       <Input value={form.author_name} onChange={(e) => setForm({ ...form, author_name: e.target.value })} required />
@@ -385,14 +385,14 @@ const Community = () => {
           </div>
 
           {/* Category pills */}
-          <div className="flex flex-wrap gap-2 mb-6 reveal">
+          <div className="flex flex-wrap gap-1.5 md:gap-2 mb-5 md:mb-6 reveal">
             {CATEGORIES.map((c) => {
               const active = c === activeCat;
               return (
                 <button
                   key={c}
                   onClick={() => setActiveCat(c)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all duration-300 ${
+                  className={`px-3 md:px-4 py-1 rounded-full text-xs md:text-sm font-medium border transition-all duration-300 ${
                     active
                       ? "bg-jorc-green text-white border-jorc-green shadow-md scale-105"
                       : "bg-white text-foreground border-border hover:border-jorc-green hover:shadow-sm"
@@ -420,7 +420,7 @@ const Community = () => {
             </Card>
           ) : (
             <>
-              <div className="space-y-4">
+              <div className="space-y-3 md:space-y-4">
                 {visiblePosts.map((post, index) => {
                   const count = (comments[post.id] || []).filter((c) => c.status === "approved").length;
                   return (
@@ -429,23 +429,23 @@ const Community = () => {
                         className="bg-white hover:shadow-lg transition-all duration-300 border-border hover:border-jorc-green/20 card-glow cursor-pointer"
                         onClick={() => setViewPost(post)}
                       >
-                        <CardContent className="pt-5">
-                          <div className="flex items-start gap-3">
-                            <div className="h-11 w-11 rounded-full bg-jorc-green text-white flex items-center justify-center font-semibold flex-shrink-0">
+                        <CardContent className="pt-4 md:pt-5">
+                          <div className="flex items-start gap-2 md:gap-3">
+                            <div className="h-9 w-9 md:h-11 md:w-11 rounded-full bg-jorc-green text-white flex items-center justify-center font-semibold flex-shrink-0 text-xs md:text-sm">
                               {initials(post.author_name)}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2 text-sm">
+                              <div className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm flex-wrap">
                                 <span className="font-semibold text-jorc-green">{post.author_name}</span>
                                 <span className="text-muted-foreground">·</span>
                                 <span className="text-muted-foreground">{timeAgo(post.created_at)}</span>
-                                <span className="ml-auto inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-jorc-green-lighter text-jorc-green">
-                                  <Pin className="h-3 w-3" /> {post.category}
+                                <span className="inline-flex items-center gap-1 text-[10px] md:text-xs px-1.5 md:px-2 py-0.5 rounded-full bg-jorc-green-lighter text-jorc-green">
+                                  <Pin className="h-2.5 w-2.5 md:h-3 md:w-3" /> {post.category}
                                 </span>
                               </div>
-                              <h3 className="text-lg font-bold mt-1 mb-1">{post.title}</h3>
-                              <p className="text-foreground/80 whitespace-pre-wrap line-clamp-3">{post.content}</p>
-                              <div className="flex items-center gap-5 mt-4 text-sm text-muted-foreground">
+                              <h3 className="text-base md:text-lg font-bold mt-1 mb-1">{post.title}</h3>
+                              <p className="text-sm md:text-base text-foreground/80 whitespace-pre-wrap line-clamp-2 md:line-clamp-3">{post.content}</p>
+                              <div className="flex items-center gap-4 md:gap-5 mt-3 md:mt-4 text-xs md:text-sm text-muted-foreground">
                                 <span className="flex items-center gap-1 hover:text-jorc-green transition-colors">
                                   <ThumbsUp className="h-4 w-4" /> {post.likes}
                                 </span>

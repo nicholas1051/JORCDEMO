@@ -23,7 +23,7 @@ const Navbar = () => {
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
             <img src={jorcLogo} alt="JORC Logo" className="h-10 w-10 rounded-full object-cover" />
-            <span className="font-bold text-jorc-green text-sm hidden sm:block leading-tight">JONAH OTUNLA<br />RESOURCE CENTER</span>
+            <span className="font-bold text-jorc-green text-xs sm:text-sm block leading-tight">JONAH OTUNLA<br />RESOURCE CENTER</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-1">

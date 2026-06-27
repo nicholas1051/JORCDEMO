@@ -188,7 +188,7 @@ const About = () => {
             100% { transform: translateX(-50%); }
           }
           .film-track {
-            animation: film-scroll 30s linear infinite;
+            animation: film-scroll 12s linear infinite;
           }
           .film-track:hover {
             animation-play-state: paused;
