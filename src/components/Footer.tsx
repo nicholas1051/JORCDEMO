@@ -27,7 +27,7 @@ const Footer = () => {
               </h3>
             </div>
             <p className="text-sm leading-relaxed text-white/70 mb-2">
-              Legacy in motion, impacting the future through digital literacy and innovation.
+              Bridging the digital divide, one community at a time.
             </p>
             <p className="text-xs opacity-60 leading-relaxed">
               An initiative of the Francisca and Jonah Otunla Foundation
