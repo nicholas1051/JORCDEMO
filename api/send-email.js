@@ -52,7 +52,7 @@ export default async function handler(req, res) {
 
   const { error } = await resend.emails.send({
     from: "JORC Website <onboarding@resend.dev>",
-    to: "copag1000@gmail.com",
+    to: "superdeeeeajibola@gmail.com",
     subject,
     html,
   });
