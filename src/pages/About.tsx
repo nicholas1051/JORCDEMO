@@ -288,7 +288,7 @@ const About = () => {
                 </p>
               <div className="relative pl-6 border-l-4 border-jorc-green">
                 <blockquote className="italic text-jorc-green pl-2">
-                    "Bridging the digital divide, one community at a time" — this is not just our tagline, 
+                    "Legacy in motion, impacting the future" — this is not just our tagline, 
                     but our commitment to continuing the transformative work that defines our purpose.
                   </blockquote>
                 </div>

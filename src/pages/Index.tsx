@@ -89,7 +89,7 @@ const GALLERY_VIDEOS = [
    ═══════════════════════════════════════ */
 
 function TypewriterHeading() {
-  const fullText = "LEGACY IN MOTION, IMPACTING THE FUTURE.";
+  const fullText = "Bridging the digital divide, one community at a time.";
   const [displayText, setDisplayText] = useState("");
 
   useEffect(() => {
