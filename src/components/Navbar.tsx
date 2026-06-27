@@ -18,7 +18,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
+    <nav className="fixed top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
       <div className="px-4 sm:px-6">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-3">

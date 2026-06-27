@@ -19,7 +19,7 @@ const App = () => {
       <BrowserRouter>
         <div className="min-h-screen flex flex-col">
           <Navbar />
-          <main className="flex-1">
+          <main className="flex-1 pt-16">
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
