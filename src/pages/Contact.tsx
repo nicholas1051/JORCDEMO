@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { sendEmailNotification } from "@/lib/notify";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -176,6 +177,14 @@ const Contact = () => {
     });
     setSubmitting(false);
     if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); return; }
+    sendEmailNotification("contact", {
+      "First Name": formData.firstName,
+      "Last Name": formData.lastName,
+      Email: formData.email,
+      Phone: formData.phone || "-",
+      Subject: formData.subject,
+      Message: formData.message,
+    });
     setSubmitted(true);
     toast({ title: "Message sent!", description: "We'll get back to you within 24 hours." });
     const confettiColors = ["#22c55e", "#f59e0b", "#3b82f6", "#ef4444", "#a855f7", "#ec4899"];
