@@ -181,14 +181,18 @@ const Contact = () => {
       console.warn("Supabase not configured, skipping database save");
     }
     setSubmitting(false);
-    sendEmailNotification("contact", {
-      "First Name": formData.firstName,
-      "Last Name": formData.lastName,
-      Email: formData.email,
-      Phone: formData.phone || "-",
-      Subject: formData.subject,
-      Message: formData.message,
-    });
+    try {
+      await sendEmailNotification("contact", {
+        "First Name": formData.firstName,
+        "Last Name": formData.lastName,
+        Email: formData.email,
+        Phone: formData.phone || "-",
+        Subject: formData.subject,
+        Message: formData.message,
+      });
+    } catch (e) {
+      console.warn("Email notify failed", e);
+    }
     setSubmitted(true);
     toast({ title: "Message sent!", description: "We'll get back to you within 24 hours." });
     const confettiColors = ["#22c55e", "#f59e0b", "#3b82f6", "#ef4444", "#a855f7", "#ec4899"];
