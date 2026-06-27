@@ -171,12 +171,16 @@ const Contact = () => {
     e.preventDefault();
     if (!validate()) return;
     setSubmitting(true);
-    const { error } = await supabase.from("contact_messages").insert({
-      first_name: formData.firstName, last_name: formData.lastName, email: formData.email,
-      phone: formData.phone || null, subject: formData.subject, message: formData.message,
-    });
+    try {
+      const { error } = await supabase.from("contact_messages").insert({
+        first_name: formData.firstName, last_name: formData.lastName, email: formData.email,
+        phone: formData.phone || null, subject: formData.subject, message: formData.message,
+      });
+      if (error) console.warn("Supabase insert failed:", error.message);
+    } catch (e) {
+      console.warn("Supabase not configured, skipping database save");
+    }
     setSubmitting(false);
-    if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); return; }
     sendEmailNotification("contact", {
       "First Name": formData.firstName,
       "Last Name": formData.lastName,
