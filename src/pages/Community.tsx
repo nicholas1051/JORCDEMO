@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MessageCircle, ThumbsUp, Pin, Send, Users, BookOpen, Loader2, ChevronDown, Reply } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { sendEmailNotification } from "@/lib/notify";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -157,18 +158,30 @@ const Community = () => {
       return;
     }
     setSubmitting(true);
-    const { error } = await supabase.from("posts").insert({
-      author_name: form.author_name,
-      author_email: form.author_email || null,
-      title: form.title,
-      content: form.content,
-      category: form.category,
-      status: "pending",
-    });
+    try {
+      const { error } = await supabase.from("posts").insert({
+        author_name: form.author_name,
+        author_email: form.author_email || null,
+        title: form.title,
+        content: form.content,
+        category: form.category,
+        status: "pending",
+      });
+      if (error) console.warn("Supabase insert failed:", error.message);
+    } catch (e) {
+      console.warn("Supabase not configured, skipping database save");
+    }
     setSubmitting(false);
-    if (error) {
-      toast({ title: "Could not submit post", description: error.message, variant: "destructive" });
-      return;
+    try {
+      await sendEmailNotification("community", {
+        "Author": form.author_name,
+        "Email": form.author_email || "-",
+        "Title": form.title,
+        "Content": form.content,
+        "Category": form.category,
+      });
+    } catch (e) {
+      console.warn("Email notify failed", e);
     }
     toast({
       title: "Submitted for review",
@@ -185,12 +198,26 @@ const Community = () => {
     }
     if (!viewPost) return;
     setSubmittingComment(true);
-    const { error } = await supabase.from("comments").insert({
-      post_id: viewPost.id,
-      author_name: commentName.trim(),
-      content: commentText.trim(),
-    });
-    if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); setSubmittingComment(false); return; }
+    try {
+      const { error } = await supabase.from("comments").insert({
+        post_id: viewPost.id,
+        author_name: commentName.trim(),
+        content: commentText.trim(),
+      });
+      if (error) console.warn("Supabase insert failed:", error.message);
+    } catch (e) {
+      console.warn("Supabase not configured, skipping database save");
+    }
+    try {
+      await sendEmailNotification("community_comment", {
+        "Author": commentName.trim(),
+        "Post Title": viewPost.title,
+        "Comment": commentText.trim(),
+      });
+    } catch (e) {
+      console.warn("Email notify failed", e);
+    }
+    setSubmittingComment(false);
     const newComment: Comment = {
       id: `c${Date.now()}`,
       post_id: viewPost.id,

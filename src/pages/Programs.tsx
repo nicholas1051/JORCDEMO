@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { sendEmailNotification } from "@/lib/notify";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -366,10 +367,25 @@ const Programs = () => {
                 const email = (document.getElementById("email") as HTMLInputElement)?.value;
                 const phone = (document.getElementById("phone") as HTMLInputElement)?.value;
                 const message = (document.getElementById("message") as HTMLTextAreaElement)?.value;
-                const { error } = await supabase.from("program_registrations").insert({
-                  program: selectedProgram, full_name: name, email, phone, message: message || null,
-                });
-                if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); return; }
+                try {
+                  const { error } = await supabase.from("program_registrations").insert({
+                    program: selectedProgram, full_name: name, email, phone, message: message || null,
+                  });
+                  if (error) console.warn("Supabase insert failed:", error.message);
+                } catch (e) {
+                  console.warn("Supabase not configured, skipping database save");
+                }
+                try {
+                  await sendEmailNotification("programs", {
+                    "Program": selectedProgram,
+                    "Full Name": name,
+                    "Email": email,
+                    "Phone": phone || "-",
+                    "Message": message || "-",
+                  });
+                } catch (e) {
+                  console.warn("Email notify failed", e);
+                }
                 setRegSubmitted(true);
                 toast({ title: "Registration submitted!", description: "We'll reach out to you shortly." });
               }}>

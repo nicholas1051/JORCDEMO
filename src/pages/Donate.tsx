@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { sendEmailNotification } from "@/lib/notify";
 import { Button } from "@/components/ui/button";
 import { Shield, FileText, Heart, ChevronDown, Loader2, Check, User, Mail, Phone, Globe, EyeOff } from "lucide-react";
 
@@ -93,14 +94,31 @@ const Donate = () => {
     e.preventDefault();
     if (!form.firstName || !form.lastName || !form.email) return;
     setSubmitting(true);
-    const { error } = await supabase.from("donation_intents").insert({
-      first_name: form.firstName, last_name: form.lastName, email: form.email,
-      country: form.country || null, phone: form.phone || null,
-      amount: form.useCustomAmount ? Number(form.customAmount) : form.amount,
-      anonymous: form.anonymous,
-    });
+    try {
+      const { error } = await supabase.from("donation_intents").insert({
+        first_name: form.firstName, last_name: form.lastName, email: form.email,
+        country: form.country || null, phone: form.phone || null,
+        amount: form.useCustomAmount ? Number(form.customAmount) : form.amount,
+        anonymous: form.anonymous,
+      });
+      if (error) console.warn("Supabase insert failed:", error.message);
+    } catch (e) {
+      console.warn("Supabase not configured, skipping database save");
+    }
     setSubmitting(false);
-    if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); return; }
+    try {
+      await sendEmailNotification("donate", {
+        "First Name": form.firstName,
+        "Last Name": form.lastName,
+        "Email": form.email,
+        "Country": form.country || "-",
+        "Phone": form.phone || "-",
+        "Amount": form.useCustomAmount ? form.customAmount : String(form.amount),
+        "Anonymous": form.anonymous ? "Yes" : "No",
+      });
+    } catch (e) {
+      console.warn("Email notify failed", e);
+    }
     setSubmitted(true);
     toast({
       title: "Donation intent received!",

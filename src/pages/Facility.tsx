@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { sendEmailNotification } from "@/lib/notify";
 
 const Facility = () => {
   const { toast } = useToast();
@@ -78,13 +79,32 @@ const Facility = () => {
     e.preventDefault();
     if (!validateStep(2)) return;
     setSubmitting(true);
-    const { error } = await supabase.from("facility_bookings").insert({
-      org_name: formData.orgName, contact_person: formData.contact, email: formData.email,
-      phone: formData.phone, purpose: formData.purpose, participants: formData.participants,
-      date: formData.date, time_slot: formData.timeSlot, additional_info: formData.info, source: "facility",
-    });
+    try {
+      const { error } = await supabase.from("facility_bookings").insert({
+        org_name: formData.orgName, contact_person: formData.contact, email: formData.email,
+        phone: formData.phone, purpose: formData.purpose, participants: formData.participants,
+        date: formData.date, time_slot: formData.timeSlot, additional_info: formData.info, source: "facility",
+      });
+      if (error) console.warn("Supabase insert failed:", error.message);
+    } catch (e) {
+      console.warn("Supabase not configured, skipping database save");
+    }
     setSubmitting(false);
-    if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); return; }
+    try {
+      await sendEmailNotification("facility", {
+        "Organization": formData.orgName,
+        "Contact Person": formData.contact,
+        "Email": formData.email,
+        "Phone": formData.phone,
+        "Purpose": formData.purpose,
+        "Participants": String(formData.participants),
+        "Date": formData.date,
+        "Time Slot": formData.timeSlot,
+        "Additional Info": formData.info || "-",
+      });
+    } catch (e) {
+      console.warn("Email notify failed", e);
+    }
     setSubmitted(true);
     toast({ title: "Booking submitted!", description: "We'll contact you within 24 hours to confirm." });
   };

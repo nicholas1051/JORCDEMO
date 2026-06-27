@@ -44,6 +44,7 @@ export default async function handler(req, res) {
     facility: "New Facility Booking Request",
     programs: "New Program Registration",
     community: "New Community Post",
+    community_comment: "New Comment on Community Post",
     donate: "New Donation Interest",
   };
 
