@@ -59,17 +59,19 @@ const About = () => {
   const CARD_W = 296; // w-72 (288) + gap-2 (8)
 
   useEffect(() => {
-    if (galleryHovered) return;
-    const id = setInterval(() => {
+    const el = galleryRef.current;
+    if (!el || galleryHovered) return;
+    const step = 1.2;
+    let rafId: number;
+    const loop = () => {
       if (!galleryRef.current) return;
-      const el = galleryRef.current;
-      const maxScroll = el.scrollWidth / 2;
-      el.scrollBy({ left: CARD_W, behavior: "smooth" });
-      if (el.scrollLeft >= maxScroll) {
-        el.scrollLeft = 0;
-      }
-    }, 3000);
-    return () => clearInterval(id);
+      const max = el.scrollWidth / 2;
+      el.scrollLeft += step;
+      if (el.scrollLeft >= max) el.scrollLeft = 0;
+      rafId = requestAnimationFrame(loop);
+    };
+    rafId = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(rafId);
   }, [galleryHovered]);
 
   const scrollGallery = (dir: "prev" | "next") => {
@@ -197,7 +199,7 @@ const About = () => {
         <div className="absolute inset-0 shimmer-bg pointer-events-none" />
         <div className="text-center py-12 md:py-16 px-6 max-w-4xl relative z-10">
           <div className="reveal" style={{ transitionDelay: "0.1s" }}>
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white/90 text-sm px-4 py-1.5 rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 mb-6 bg-amber-400/20 text-amber-300 border border-amber-400/30 px-4 py-1.5 rounded-full text-sm font-medium">
               Empowering the Future
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">

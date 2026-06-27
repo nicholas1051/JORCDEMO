@@ -263,7 +263,7 @@ const Community = () => {
         <div className="absolute inset-0 shimmer-bg pointer-events-none" />
         <div className="text-center py-12 md:py-16 px-6 max-w-4xl relative z-10">
           <div className="reveal" style={{ transitionDelay: "0.1s" }}>
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white/90 text-sm px-4 py-1.5 rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 mb-6 bg-amber-400/20 text-amber-300 border border-amber-400/30 px-4 py-1.5 rounded-full text-sm font-medium">
               Connect & Share
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight">
