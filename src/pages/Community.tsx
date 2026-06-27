@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { MessageCircle, ThumbsUp, Pin, Send, Users, BookOpen, Loader2, ChevronDown, Reply } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { sendEmailNotification } from "@/lib/notify";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -172,17 +171,6 @@ const Community = () => {
       console.warn("Supabase not configured, skipping database save");
     }
     setSubmitting(false);
-    try {
-      await sendEmailNotification("community", {
-        "Author": form.author_name,
-        "Email": form.author_email || "-",
-        "Title": form.title,
-        "Content": form.content,
-        "Category": form.category,
-      });
-    } catch (e) {
-      console.warn("Email notify failed", e);
-    }
     toast({
       title: "Submitted for review",
       description: "Your post will appear here after an admin approves it.",
@@ -207,15 +195,6 @@ const Community = () => {
       if (error) console.warn("Supabase insert failed:", error.message);
     } catch (e) {
       console.warn("Supabase not configured, skipping database save");
-    }
-    try {
-      await sendEmailNotification("community_comment", {
-        "Author": commentName.trim(),
-        "Post Title": viewPost.title,
-        "Comment": commentText.trim(),
-      });
-    } catch (e) {
-      console.warn("Email notify failed", e);
     }
     setSubmittingComment(false);
     const newComment: Comment = {

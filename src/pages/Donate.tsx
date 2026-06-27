@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { sendEmailNotification } from "@/lib/notify";
 import { Button } from "@/components/ui/button";
 import { Shield, FileText, Heart, ChevronDown, Loader2, Check, User, Mail, Phone, Globe, EyeOff } from "lucide-react";
 
@@ -106,19 +105,6 @@ const Donate = () => {
       console.warn("Supabase not configured, skipping database save");
     }
     setSubmitting(false);
-    try {
-      await sendEmailNotification("donate", {
-        "First Name": form.firstName,
-        "Last Name": form.lastName,
-        "Email": form.email,
-        "Country": form.country || "-",
-        "Phone": form.phone || "-",
-        "Amount": form.useCustomAmount ? form.customAmount : String(form.amount),
-        "Anonymous": form.anonymous ? "Yes" : "No",
-      });
-    } catch (e) {
-      console.warn("Email notify failed", e);
-    }
     setSubmitted(true);
     toast({
       title: "Donation intent received!",
