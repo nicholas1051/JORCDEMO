@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Users, Target, Heart, Lightbulb, ChevronDown, X, Star } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Users, Target, Heart, Lightbulb, ChevronDown, X, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
@@ -54,6 +54,39 @@ const About = () => {
   }, []);
 
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const [galleryHovered, setGalleryHovered] = useState(false);
+  const CARD_W = 296; // w-72 (288) + gap-2 (8)
+
+  useEffect(() => {
+    if (galleryHovered) return;
+    const id = setInterval(() => {
+      if (!galleryRef.current) return;
+      const el = galleryRef.current;
+      const maxScroll = el.scrollWidth / 2;
+      el.scrollBy({ left: CARD_W, behavior: "smooth" });
+      if (el.scrollLeft >= maxScroll) {
+        el.scrollLeft = 0;
+      }
+    }, 3000);
+    return () => clearInterval(id);
+  }, [galleryHovered]);
+
+  const scrollGallery = (dir: "prev" | "next") => {
+    if (!galleryRef.current) return;
+    const el = galleryRef.current;
+    const maxScroll = el.scrollWidth / 2;
+    if (dir === "next") {
+      el.scrollBy({ left: CARD_W, behavior: "smooth" });
+      if (el.scrollLeft >= maxScroll) el.scrollLeft = 0;
+    } else {
+      if (el.scrollLeft <= 0) {
+        el.scrollLeft = maxScroll;
+      } else {
+        el.scrollBy({ left: -CARD_W, behavior: "smooth" });
+      }
+    }
+  };
 
   const storyImages = [
     "https://i.postimg.cc/7695rtPg/Whats-App-Image-2026-03-02-at-12-25-29-PM.jpg",
@@ -182,24 +215,36 @@ const About = () => {
 
       {/* Image Carousel - Film strip */}
       <section>
-        <style>{`
-          @keyframes film-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          .film-track {
-            animation: film-scroll 12s linear infinite;
-          }
-          .film-track:hover {
-            animation-play-state: paused;
-          }
-        `}</style>
-        <div className="relative overflow-hidden border-y border-jorc-green-lighter shadow-lg">
+        <div
+          className="relative overflow-hidden border-y border-jorc-green-lighter shadow-lg group"
+          onMouseEnter={() => setGalleryHovered(true)}
+          onMouseLeave={() => setGalleryHovered(false)}
+        >
           {/* Fade edges */}
           <div className="absolute inset-y-0 left-0 w-16 z-10 pointer-events-none" style={{ background: "linear-gradient(to right, white 0%, transparent 100%)" }} />
           <div className="absolute inset-y-0 right-0 w-16 z-10 pointer-events-none" style={{ background: "linear-gradient(to left, white 0%, transparent 100%)" }} />
+          {/* Prev button */}
+          <button
+            onClick={() => scrollGallery("prev")}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-white/80 shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:shadow-lg focus:outline-none"
+            aria-label="Previous image"
+          >
+            <ChevronLeft className="h-5 w-5 text-jorc-green" />
+          </button>
+          {/* Next button */}
+          <button
+            onClick={() => scrollGallery("next")}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-white/80 shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:shadow-lg focus:outline-none"
+            aria-label="Next image"
+          >
+            <ChevronRight className="h-5 w-5 text-jorc-green" />
+          </button>
           <div className="py-4 md:py-8">
-            <div className="flex gap-2 film-track">
+            <div
+              ref={galleryRef}
+              className="flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
               {[...storyImages, ...storyImages].map((img, i) => (
                 <button
                   key={i}
